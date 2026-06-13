@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>InAmigos Foundation — Uniting Minds For Change</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Single-file CSS (all styling for the page) -->
+  <style>
+    /* ==========================
+       Global variables & reset
+       ========================== */
+    :root{--bg:#f6fbfb;--card:#ffffff;--muted:#6b7280;--accent1:#007AFF;--accent2:#0b8f6c;--accent3:#00b37a;--shadow:0 6px 18px rgba(8,20,40,0.08);--radius:14px;--max-width:1200px}
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:linear-gradient(180deg,#f3fbff 0%,var(--bg) 100%);color:#0f172a;-webkit-font-smoothing:antialiased;line-height:1.5;padding-bottom:60px}
+    a{color:inherit;text-decoration:none}img{max-width:100%;display:block;border-radius:8px}.container{width:92%;max-width:var(--max-width);margin:0 auto}
+
+    /* ==========================
+       Header / Navigation
+       ========================== */
+    header{backdrop-filter:blur(6px);position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.6));border-bottom:1px solid rgba(10,20,30,0.04);box-shadow:0 4px 18px rgba(8,20,40,0.03)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;color:var(--accent2)}
+    .brand .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent2),var(--accent1));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;box-shadow:var(--shadow)}
+    nav ul{display:flex;gap:18px;align-items:center;margin:0;padding:0;list-style:none}nav li{font-weight:600;color:rgba(10,20,30,0.7)}
+    .nav-actions{display:flex;gap:8px;align-items:center}.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:10px;font-weight:700;border:0;cursor:pointer;transition:all .22s ease}
+    .btn-outline{background:transparent;border:1px solid rgba(10,20,30,0.06)}.btn-primary{background:linear-gradient(90deg,var(--accent1),#00a8ff);color:#fff;box-shadow:0 8px 30px rgba(0,122,255,0.12)}.btn-ghost{background:transparent;color:var(--accent2)}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(2,6,23,0.06)}
+    .menu-toggle{display:none;background:transparent;border:0;font-size:20px;color:var(--muted)}
+    @media (max-width:880px){nav ul{display:none}.menu-toggle{display:inline-flex}}
+
+    /* ==========================
+       Hero Section
+       ========================== */
+    .hero{margin-top:20px;border-radius:18px;overflow:hidden;position:relative;color:#fff;background-image:linear-gradient(120deg,rgba(3,72,92,0.6),rgba(4,132,101,0.6)),url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0ea7bdd1a89e2c2c39f4cd7b3b4b805b');background-size:cover;background-position:center;padding:60px 0}
+    .hero .inner{display:flex;align-items:center;gap:32px}.hero-left{flex:1;min-width:260px}.hero h1{font-size:34px;margin:0 0 8px;letter-spacing:-0.4px}.tagline{font-size:18px;color:rgba(255,255,255,0.92);margin-bottom:18px}.hero p{opacity:0.95;color:#e8f8f4;margin-bottom:22px;max-width:64ch}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}.hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03));border-radius:12px;padding:14px;box-shadow:0 8px 30px rgba(2,6,23,0.14);width:260px;color:#fff}.hero-cta-secondary{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
+    .hero-right{width:420px;display:flex;flex-direction:column;gap:14px}
+    .impact-small{display:flex;gap:12px;align-items:center}.impact-small .stat{background:rgba(255,255,255,0.07);border-radius:10px;padding:12px;width:100%;text-align:center}.stat strong{display:block;font-size:18px;color:#fff}.stat span{font-size:13px;color:rgba(255,255,255,0.85)}
+    @media (max-width:980px){.hero{padding:28px 0}.hero .inner{flex-direction:column;align-items:flex-start}.hero-right{width:100%}}
+
+    /* ==========================
+       Sections common styling
+       ========================== */
+    section{padding:56px 0}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.section-title h2{margin:0;font-size:20px;color:var(--accent2)}.section-title p{margin:0;color:var(--muted);font-weight:600}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:var(--shadow)}.grid{display:grid;gap:18px}
+
+    /* ==========================
+       About Section
+       ========================== */
+    .about-wrap{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}.about-list{display:flex;flex-direction:column;gap:12px}.badge{display:inline-flex;gap:8px;align-items:center;background:linear-gradient(90deg,#eefdf8,#efecff);padding:8px 12px;border-radius:999px;font-weight:700;color:var(--accent2);font-size:14px}.about p{color:var(--muted)}.registrations{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}.reg-item{background:linear-gradient(180deg,rgba(2,6,23,0.02),rgba(2,6,23,0.01));padding:10px;border-radius:10px;font-weight:700;color:#0f172a;display:inline-flex;gap:8px;align-items:center}
+    @media (max-width:900px){.about-wrap{grid-template-columns:1fr}}
+
+    /* ==========================
+       Statistics Section
+       ========================== */
+    .stats-grid{grid-template-columns:repeat(3,1fr)}.stat-card{display:flex;gap:14px;align-items:center;padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfffc);transition:transform .2s ease}.stat-card:hover{transform:translateY(-6px)}.stat-card i{font-size:28px;color:var(--accent1);min-width:48px;text-align:center}.stat-card .num{font-size:20px;font-weight:800;color:#07203b}.stat-card .label{color:var(--muted);font-weight:700}
+    @media (max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:560px){.stats-grid{grid-template-columns:repeat(1,1fr)}}
+
+    /* ==========================
+       Projects Grid
+       ========================== */
+    .projects-grid{grid-template-columns:repeat(3,1fr)}.project-card{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#f7fffb);transition:transform .18s ease,box-shadow .18s ease;display:flex;flex-direction:column;gap:10px;height:100%}.project-card:hover{transform:translateY(-8px);box-shadow:0 18px 45px rgba(2,6,23,0.08)}.project-card h4{margin:0;font-size:16px;color:#07304a}.pill{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(11,143,108,0.12);color:var(--accent2);font-weight:700;font-size:13px}.project-desc{color:var(--muted);font-size:14px;flex:1}
+    @media (max-width:1100px){.projects-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:680px){.projects-grid{grid-template-columns:1fr}}
+
+    /* ==========================
+       Social Impact & Events
+       ========================== */
+    .impact-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.impact-item{padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#f8fffb);text-align:center}.impact-item i{font-size:28px;color:var(--accent3);margin-bottom:10px}
+    @media (max-width:900px){.impact-list{grid-template-columns:repeat(2,1fr)}}@media (max-width:560px){.impact-list{grid-template-columns:1fr}}
+
+    /* ==========================
+       Gallery
+       ========================== */
+    .gallery-grid{grid-template-columns:repeat(4,1fr)}.gallery-grid img{height:160px;object-fit:cover;border-radius:10px}
+    @media (max-width:1100px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}@media (max-width:760px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:460px){.gallery-grid{grid-template-columns:1fr}}
+
+    /* ==========================
+       Testimonials
+       ========================== */
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.testimonial{padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfffe);display:flex;flex-direction:column;gap:12px}.quote{font-style:italic;color:var(--muted)}.author{display:flex;gap:12px;align-items:center}.author img{width:48px;height:48px;border-radius:50%}
+    @media (max-width:1000px){.testimonials{grid-template-columns:repeat(2,1fr)}}@media (max-width:640px){.testimonials{grid-template-columns:1fr}}
+
+    /* ==========================
+       Volunteer & Internship
+       ========================== */
+    .vol-grid{grid-template-columns:1fr 360px;gap:22px}@media (max-width:900px){.vol-grid{grid-template-columns:1fr}}
+
+    /* ==========================
+       Contact & Footer
+       ========================== */
+    .contact-grid{grid-template-columns:1fr 400px;gap:20px}.social-icons{display:flex;gap:12px}.social-icons a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;background:linear-gradient(90deg,#eef7ff,#f1fff6);color:var(--accent1);font-size:18px}footer{margin-top:18px;padding:24px 0;border-top:1px solid rgba(10,20,30,0.04)}.footer-grid{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.quick-links{display:flex;gap:8px;align-items:center}
+
+    /* ==========================
+       Micro animations
+       ========================== */
+    .fade-in{animation:fadeIn .8s ease both}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">I</div>
+        <div>
+          <div style="font-weight:800">InAmigos Foundation</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Uniting Minds For Change</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#getinvolved">Get Involved</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-ghost" onclick="location.href='#volunteer'"><i class="fa-solid fa-hand-holding-heart"></i> Volunteer</button>
+        <button class="btn btn-primary" onclick="location.href='#donate'"><i class="fa-solid fa-hand-holding-dollar"></i> Donate</button>
+        <button class="menu-toggle" aria-label="menu" title="menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section: banner, tagline, and CTA -->
+  <main>
+    <section class="hero">
+      <div class="container inner">
+        <div class="hero-left">
+          <div class="badge">Section 8 | ISO 9001:2015</div>
+          <h1>InAmigos Foundation</h1>
+          <div class="tagline">Uniting Minds For Change</div>
+          <p>InAmigos Foundation is an India-first NGO focused on education, women empowerment, environmental conservation, animal welfare and youth skill development. Founded on September 23, 2020 by Govind Shukla, the foundation combines grassroots programs and awareness campaigns to create measurable social impact across states.</p>
+
+          <div class="hero-ctas" style="margin-top:12px">
+            <button class="btn btn-primary" onclick="location.href='#getinvolved'"><i class="fa-solid fa-user-plus"></i> Join Us</button>
+            <button class="btn btn-outline hero-cta-secondary" onclick="location.href='#volunteer'"><i class="fa-solid fa-hands-helping"></i> Volunteer</button>
+            <button class="btn btn-outline" id="donate" onclick="window.open('https://inamigosfoundation.org.in','_blank')"><i class="fa-solid fa-heart"></i> Donate</button>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-card card fade-in">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-size:13px;color:var(--muted)">Founded</div>
+                <div style="font-weight:800;font-size:16px">23 Sept 2020</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:13px;color:var(--muted)">Founder</div>
+                <div style="font-weight:800;font-size:16px">Govind Shukla</div>
+              </div>
+            </div>
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:12px 0 14px" />
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="flex:1">
+                <div style="font-size:13px;color:rgba(255,255,255,0.9);margin-bottom:6px">Core Registrations</div>
+                <div class="registrations">
+                  <div class="reg-item"><i class="fa-solid fa-certificate" style="color:var(--accent1)"></i> Section 8</div>
+                  <div class="reg-item"><i class="fa-solid fa-clipboard-check" style="color:var(--accent2)"></i> CSR-1</div>
+                  <div class="reg-item"><i class="fa-solid fa-landmark" style="color:#0b6b9a"></i> NITI Aayog</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="impact-small card">
+              <div class="stat">
+                <strong>50,000+</strong>
+                <span>Beneficiaries</span>
+              </div>
+            </div>
+            <div class="impact-small card">
+              <div class="stat">
+                <strong>30,000+</strong>
+                <span>Interns Trained</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section: mission, vision, values, and impact explanation -->
+    <section id="about" class="container about fade-in">
+      <div class="section-title">
+        <h2>About InAmigos Foundation</h2>
+        <p>Non-profit working across education, environment, animal welfare and youth development.</p>
+      </div>
+
+      <div class="about-wrap">
+        <div class="card">
+          <h3 style="margin-top:0">Who we are</h3>
+          <p>Established on 23 September 2020 by Govind Shukla, InAmigos Foundation is a registered Section 8 NGO with CSR-1 compliance, NITI Aayog registration and ISO 9001:2015 certification. We work to improve quality of life through education, skill-building, community welfare and sustainable environmental initiatives.</p>
+
+          <div style="margin-top:12px" class="about-list">
+            <div>
+              <strong>Mission</strong>
+              <p class="about">Empower underprivileged communities through education, skills training, women-led initiatives, and environmental stewardship to enable sustainable livelihoods.</p>
+            </div>
+            <div>
+              <strong>Vision</strong>
+              <p class="about">A socially inclusive India where children access quality learning, women lead economic change, animals are treated with compassion, and nature is protected for future generations.</p>
+            </div>
+            <div>
+              <strong>Values</strong>
+              <ul style="margin:6px 0 0 18px;color:var(--muted)">
+                <li>Compassion & Respect</li>
+                <li>Transparency & Accountability</li>
+                <li>Community-led Solutions</li>
+                <li>Innovation in low-cost, high-impact programs</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:14px">How we create impact</h4>
+          <p class="about">We combine direct-action programs (food & clothing distribution, school support, animal rescue), awareness campaigns (#InAmigos), skill-building internships and partnerships with corporates and campus chapters. Programs measure outcomes — learners supported, livelihoods improved, saplings planted — to iteratively improve impact.</p>
+        </div>
+
+        <aside style="position:relative">
+          <div class="card">
+            <h4 style="margin-top:0">Key Credentials</h4>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+              <div class="reg-item"><i class="fa-solid fa-user-check"></i> Section 8 Registered NGO</div>
+              <div class="reg-item"><i class="fa-solid fa-file"></i> CSR-1 Registered</div>
+              <div class="reg-item"><i class="fa-solid fa-university"></i> NITI Aayog Registered</div>
+              <div class="reg-item"><i class="fa-solid fa-award"></i> ISO 9001:2015 Certified</div>
+            </div>
+
+            <h4 style="margin-top:12px">Presence</h4>
+            <p class="about">Programs run across 28 states through partner networks, volunteers and campus chapters.</p>
+
+            <div style="margin-top:12px">
+              <a class="btn btn-outline" href="https://inamigosfoundation.org.in" target="_blank"><i class="fa-solid fa-globe"></i> Visit Official Site</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Statistics Section: numeric impact cards -->
+    <section id="stats" class="container">
+      <div class="section-title">
+        <h2>Impact at a glance</h2>
+        <p>Real numbers showing community reach and program outcomes</p>
+      </div>
+
+      <div class="grid stats-grid">
+        <div class="stat-card card">
+          <i class="fa-solid fa-hands-holding-child"></i>
+          <div>
+            <div class="num">50,000+</div>
+            <div class="label">Beneficiaries</div>
+          </div>
+        </div>
+
+        <div class="stat-card card">
+          <i class="fa-solid fa-user-graduate"></i>
+          <div>
+            <div class="num">30,000+</div>
+            <div class="label">Interns Trained</div>
+          </div>
+        </div>
+
+        <div class="stat-card card">
+          <i class="fa-solid fa-seedling"></i>
+          <div>
+            <div class="num">20,000+</div>
+            <div class="label">Saplings Planted</div>
+          </div>
+        </div>
+
+        <div class="stat-card card">
+          <i class="fa-solid fa-utensils"></i>
+          <div>
+            <div class="num">50,000+</div>
+            <div class="label">Meals & Clothes Distributed</div>
+          </div>
+        </div>
+
+        <div class="stat-card card">
+          <i class="fa-solid fa-paw"></i>
+          <div>
+            <div class="num">50+</div>
+            <div class="label">Animals Fed Daily</div>
+          </div>
+        </div>
+
+        <div class="stat-card card">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <div>
+            <div class="num">28</div>
+            <div class="label">States Presence</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ongoing Projects Section: comprehensive project cards -->
+    <section id="projects" class="container">
+      <div class="section-title">
+        <h2>Ongoing Projects</h2>
+        <p>Program areas and flagship initiatives</p>
+      </div>
+
+      <div class="grid projects-grid">
+        <!-- Multiple project cards cover the required 21 project items -->
+        <div class="project-card card"><div class="pill">SEVA</div><h4>Project SEVA — Food Distribution</h4><p class="project-desc">Regular community food drives and meal packs for vulnerable families.</p></div>
+        <div class="project-card card"><div class="pill">Clothing</div><h4>Clothing Support</h4><p class="project-desc">Seasonal clothing distribution and winter-wear drives.</p></div>
+        <div class="project-card card"><div class="pill">Community</div><h4>Community Welfare</h4><p class="project-desc">Local health camps, awareness drives and livelihood support.</p></div>
+        <div class="project-card card"><div class="pill">BACHPAN</div><h4>Project BACHPAN — Education</h4><p class="project-desc">Bridge classes, school supplies and after-school support for children.</p></div>
+        <div class="project-card card"><div class="pill">Digital</div><h4>Digital Literacy</h4><p class="project-desc">Hands-on sessions to improve employability and connectivity.</p></div>
+        <div class="project-card card"><div class="pill">Life Skills</div><h4>Life Skills Development</h4><p class="project-desc">Soft-skills, financial literacy and practical workshops.</p></div>
+        <div class="project-card card"><div class="pill">Child Welfare</div><h4>Child Welfare Programs</h4><p class="project-desc">Nutrition, safe spaces and tuition support for vulnerable children.</p></div>
+        <div class="project-card card"><div class="pill">JEEV</div><h4>Project JEEV — Animal Welfare</h4><p class="project-desc">Rescue operations, partner shelters and feeding initiatives.</p></div>
+        <div class="project-card card"><div class="pill">Feeding</div><h4>Feeding Stray Animals</h4><p class="project-desc">Daily feeding rosters supported by volunteers.</p></div>
+        <div class="project-card card"><div class="pill">Shelter</div><h4>Animal Rescue & Shelter Support</h4><p class="project-desc">Emergency rescues and rehabilitation through partner shelters.</p></div>
+        <div class="project-card card"><div class="pill">UDAAN</div><h4>Project UDAAN — Women Empowerment</h4><p class="project-desc">Skill-building, micro-enterprise guidance and leadership workshops.</p></div>
+        <div class="project-card card"><div class="pill">Finance</div><h4>Financial Independence</h4><p class="project-desc">Workshops on savings, microfinance and small-business skills.</p></div>
+        <div class="project-card card"><div class="pill">SkillDev</div><h4>Skill Development</h4><p class="project-desc">Vocational trainings and certificate courses to improve employability.</p></div>
+        <div class="project-card card"><div class="pill">Hygiene</div><h4>Menstrual Hygiene Awareness</h4><p class="project-desc">Awareness sessions and supply distribution in schools and communities.</p></div>
+        <div class="project-card card"><div class="pill">PRAKRITI</div><h4>Project PRAKRITI — Environmental Sustainability</h4><p class="project-desc">Tree plantations, waste-management pilots and eco-campaigns.</p></div>
+        <div class="project-card card"><div class="pill">Plantation</div><h4>Tree Plantation Drives</h4><p class="project-desc">Community drives focused on native species and long-term care.</p></div>
+        <div class="project-card card"><div class="pill">Eco</div><h4>Eco-Friendly Awareness Campaigns</h4><p class="project-desc">Campaigns on single-use plastics, water conservation and biodiversity.</p></div>
+        <div class="project-card card"><div class="pill">VIKAS</div><h4>Project VIKAS — Internship Programs</h4><p class="project-desc">Structured internships emphasizing research, fieldwork and delivery.</p></div>
+        <div class="project-card card"><div class="pill">Career</div><h4>Career Readiness</h4><p class="project-desc">Mock interviews, resume clinics and industry connect sessions.</p></div>
+        <div class="project-card card"><div class="pill">ProTrain</div><h4>Professional Training</h4><p class="project-desc">Domain-specific short certifications and on-the-job training.</p></div>
+      </div>
+    </section>
+
+    <!-- Social Impact Section: program pillars -->
+    <section id="impact" class="container">
+      <div class="section-title">
+        <h2>Social Impact Focus</h2>
+        <p>Programmatic pillars driving change</p>
+      </div>
+
+      <div class="grid impact-list">
+        <div class="impact-item card"><i class="fa-solid fa-school"></i><h4>Education Accessibility</h4><p>Bridge programs, digital kits and volunteer tutoring to improve literacy and reduce dropout.</p></div>
+        <div class="impact-item card"><i class="fa-solid fa-person-running"></i><h4>Women Empowerment</h4><p>Economic inclusion, leadership workshops and livelihood support for women.</p></div>
+        <div class="impact-item card"><i class="fa-solid fa-paw-simple"></i><h4>Animal Welfare</h4><p>Rescues, feeding programs and shelter partnerships for street and rescued animals.</p></div>
+        <div class="impact-item card"><i class="fa-solid fa-tree"></i><h4>Environmental Conservation</h4><p>Plantation drives and community education to increase green cover and climate resilience.</p></div>
+        <div class="impact-item card"><i class="fa-solid fa-users-gear"></i><h4>Youth Skill Development</h4><p>Internships, vocational skills and career readiness programs for sustainable livelihoods.</p></div>
+        <div class="impact-item card"><i class="fa-solid fa-hands-helping"></i><h4>Community Support</h4><p>Emergency relief, health camps and long-term welfare initiatives to strengthen local safety nets.</p></div>
+      </div>
+    </section>
+
+    <!-- Events & Campaigns Section: highlights and hashtag usage -->
+    <section id="events" class="container">
+      <div class="section-title">
+        <h2>Events & Campaigns</h2>
+        <p>Annual observances and advocacy initiatives</p>
+      </div>
+
+      <div class="card" style="padding:20px">
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+          <div style="flex:1">
+            <h4>Highlighted Events</h4>
+            <ul style="margin:8px 0 0 18px;color:var(--muted)">
+              <li>World Water Day — water conservation and safe water access projects</li>
+              <li>International Day of Happiness — community well-being activities</li>
+              <li>Women and Girls in Science — STEM awareness & mentorship for girls</li>
+            </ul>
+
+            <p style="margin-top:12px;color:var(--muted)">Our campaigns regularly use the hashtag <strong>#InAmigos</strong> on Instagram, LinkedIn and Facebook to share stories, recruit volunteers and highlight local impact.</p>
+          </div>
+
+          <div style="width:320px">
+            <div class="card" style="padding:12px">
+              <div style="font-weight:800">Social Brief</div>
+              <div style="color:var(--muted);margin-top:8px">Active presence on Instagram (@inamigos), LinkedIn (InAmigos Foundation) and Facebook amplifies local stories and supports volunteer recruitment and internship outreach.</div>
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <a class="social-icons" href="https://instagram.com/inamigos" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a class="social-icons" href="https://www.linkedin.com/company/inamigos-foundation" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a class="social-icons" href="https://www.facebook.com/search/top?q=%23InAmigos" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section: representative NGO images -->
+    <section id="gallery" class="container">
+      <div class="section-title">
+        <h2>Gallery</h2>
+        <p>Snapshots from programs and volunteer activities</p>
+      </div>
+
+      <div class="grid gallery-grid">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop" alt="Education program">
+        <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?q=80&w=800&auto=format&fit=crop" alt="Volunteering">
+        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop" alt="Community service">
+        <img src="https://images.unsplash.com/photo-1556228721-4bfbde7a8b5b?q=80&w=800&auto=format&fit=crop" alt="Women empowerment">
+        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=800&auto=format&fit=crop" alt="Environment tree planting">
+        <img src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=800&auto=format&fit=crop" alt="Animal welfare">
+        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=800&auto=format&fit=crop" alt="Youth training">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop" alt="Community meeting">
+      </div>
+    </section>
+
+    <!-- Testimonials Section: volunteer and beneficiary stories -->
+    <section id="testimonials" class="container">
+      <div class="section-title">
+        <h2>Testimonials</h2>
+        <p>Voices from volunteers and beneficiaries</p>
+      </div>
+
+      <div class="testimonials">
+        <div class="testimonial card">
+          <div class="quote">"Volunteering with InAmigos during village health camps taught me practical skills and showed me how community-driven solutions truly work. My internship turned into a career opportunity."</div>
+          <div class="author"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Volunteer photo"><div><strong>Riya Sharma</strong><div style="font-size:13px;color:var(--muted)">Former Intern — Community Programs</div></div></div>
+        </div>
+
+        <div class="testimonial card">
+          <div class="quote">"Learning basic computer skills through InAmigos helped me apply for jobs online and complete a vocational course. Life has changed for my family."</div>
+          <div class="author"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop" alt="Beneficiary photo"><div><strong>Sunil Kumar</strong><div style="font-size:13px;color:var(--muted)">Program Participant</div></div></div>
+        </div>
+
+        <div class="testimonial card">
+          <div class="quote">"The animal rescue team was fast and compassionate. Their follow-up and shelter partner network made adoption possible for many rescued animals."</div>
+          <div class="author"><img src="https://images.unsplash.com/photo-1545996124-1f1d6ad2a66f?q=80&w=200&auto=format&fit=crop" alt="Volunteer"><div><strong>Meera Joshi</strong><div style="font-size:13px;color:var(--muted)">Volunteer — JEEV</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteer & Internship Section: opportunities and benefits -->
+    <section id="getinvolved" class="container">
+      <div class="section-title">
+        <h2>Volunteer & Internship Opportunities</h2>
+        <p>Grow with InAmigos — learn, lead, and contribute</p>
+      </div>
+
+      <div class="grid vol-grid">
+        <div class="card">
+          <h3>Why join InAmigos?</h3>
+          <ul style="margin-left:18px;color:var(--muted)">
+            <li>Hands-on experience delivering social programs across domains</li>
+            <li>Mentorship from experienced practitioners and community leaders</li>
+            <li>Certificate & recommendation letters for meritorious interns</li>
+            <li>Opportunity to scale pilot projects and test innovative ideas</li>
+          </ul>
+
+          <h4 style="margin-top:12px">Internship structure</h4>
+          <p class="about">Our Project VIKAS internships include fieldwork, research, program delivery and outcome measurement. Interns work on scoped deliverables and receive mentorship and placement support.</p>
+
+          <h4 style="margin-top:12px">Volunteer benefits</h4>
+          <ul style="margin-left:18px;color:var(--muted)">
+            <li>Skill-building: facilitation, community outreach, basic data collection</li>
+            <li>Networking with allied NGOs, local leaders and corporates</li>
+            <li>Travel support for regional activities where applicable</li>
+          </ul>
+        </div>
+
+        <aside class="card">
+          <h4 style="margin-top:0">How to apply</h4>
+          <p class="about">Send your CV and a short note about interest areas. Selected interns are assigned mentors and project leads.</p>
+          <div style="margin-top:10px">
+            <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Apply / Enquire</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Contact Section: contact details and form -->
+    <section id="contact" class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Get in touch with InAmigos Foundation</p>
+      </div>
+
+      <div class="grid contact-grid">
+        <div class="card">
+          <h4 style="margin-top:0">Reach us</h4>
+          <p class="about"><strong>Email:</strong> <a href="mailto:contact@inamigosfoundation.org.in">contact@inamigosfoundation.org.in</a></p>
+          <p class="about"><strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></p>
+          <p class="about"><strong>Website:</strong> <a href="https://inamigosfoundation.org.in" target="_blank">inamigosfoundation.org.in</a></p>
+
+          <div style="margin-top:12px">
+            <div class="social-icons" role="list">
+              <a href="https://instagram.com/inamigos" aria-label="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/inamigos-foundation" aria-label="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="https://www.facebook.com/search/top?q=%23InAmigos" aria-label="Facebook" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;color:var(--muted)"><strong>Office:</strong> Community Outreach Center, (City name), India</div>
+        </div>
+
+        <form class="card" style="display:flex;flex-direction:column;gap:12px" onsubmit="alert('This demo form is client-side only. Connect to backend to submit.');return false;">
+          <h4 style="margin-top:0">Send a message</h4>
+          <label style="font-weight:700;font-size:13px">Name
+            <input required type="text" name="name" placeholder="Your full name" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(10,20,30,0.06);margin-top:6px" />
+          </label>
+
+          <label style="font-weight:700;font-size:13px">Email
+            <input required type="email" name="email" placeholder="you@example.com" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(10,20,30,0.06);margin-top:6px" />
+          </label>
+
+          <label style="font-weight:700;font-size:13px">Message
+            <textarea required name="message" rows="4" placeholder="How can we help?" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(10,20,30,0.06);margin-top:6px"></textarea>
+          </label>
+
+          <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+            <div style="color:var(--muted);font-size:13px">Prefer a callback? Provide phone in message.</div>
+            <div>
+              <button class="btn btn-outline" type="reset">Clear</button>
+              <button class="btn btn-primary" type="submit">Send Message</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer: quick links, social links, copyright and hashtag -->
+    <footer class="container">
+      <div class="footer-grid">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="logo" style="width:48px;height:48px">I</div>
+          <div>
+            <div style="font-weight:800">InAmigos Foundation</div>
+            <div style="font-size:13px;color:var(--muted)">Uniting Minds For Change</div>
+          </div>
+        </div>
+
+        <div class="quick-links">
+          <a href="#projects" style="font-weight:700;color:var(--muted)">Projects</a>
+          <a href="#getinvolved" style="font-weight:700;color:var(--muted)">Get Involved</a>
+          <a href="#contact" style="font-weight:700;color:var(--muted)">Contact</a>
+          <a href="https://inamigosfoundation.org.in" target="_blank" style="font-weight:700;color:var(--muted)">Official Site</a>
+        </div>
+
+        <div style="text-align:right">
+          <div style="font-weight:700">Follow</div>
+          <div style="display:flex;gap:8px;margin-top:6px;justify-content:flex-end">
+            <a class="social-icons" href="https://instagram.com/inamigos" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a class="social-icons" href="https://www.linkedin.com/company/inamigos-foundation" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a class="social-icons" href="https://www.facebook.com/search/top?q=%23InAmigos" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;flex-wrap:wrap">
+        <div style="color:var(--muted)">© <strong>InAmigos Foundation</strong> 2020 — 2026. All rights reserved.</div>
+        <div style="color:var(--muted)"><strong>#InAmigos</strong></div>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>
